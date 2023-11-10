@@ -54,10 +54,10 @@ class MonthlyStock:
         self.net_profit_loss = net_profit_loss
 
     def display(self):
-        print(f"Month: {self.month}")
-        print(f"Units Sold: {self.units_sold}")
-        print(f"Units Manufactured: {self.units_manufactured}")
-        print(f"Net Profit/Loss: {self.net_profit_loss}")
+        print("Month: "+self.month)
+        print("Units Sold: "+self.units_sold)
+        print("Units Manufactured: "+self.units_manufactured)
+        print("Net Profit/Loss: "+self.net_profit_loss)
         print("-------------------------------")
 
 def main():
@@ -75,3 +75,4 @@ def main():
 if __name__ == "__main__":
     main()
         
+        # test test
