@@ -6,22 +6,6 @@ complete the object-oriented design process to find the classes that
 correspond to the objects found. With the object-oriented design finalized, 
 implement the program using Visual Studio Code IDE.
 '''
-# class Product:
-#     def __init__(self):
-#         self.code=eval(input("Please enter the code: "))
-#         self.name=input("Please enter name of product: ")
-#         self.sale=eval(input("Please enter the sale price: "))
-#         self.manu=eval(input("Please enter the manufacting cost: "))
-#         self.stock=eval(input("Please enter the stock: "))
-#         self.emum=eval(input("Please enter the estimated Monthly Units Manufactured: "))
-#     def show(self):
-#         print(self.code)
-#         print(self.name)
-#         print(self.sale)
-#         print(self.manu)
-#         print(self.stock)
-#         print(self.emum)
-
 import random
 
 class Product:
@@ -74,5 +58,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
-        # test test
