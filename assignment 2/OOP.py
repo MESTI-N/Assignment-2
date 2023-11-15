@@ -9,20 +9,26 @@ implement the program using Visual Studio Code IDE.
 import random
 
 class Product:
-    def __init__(self, code, name, sale_price, manufacture_cost, stock_level, estimated_units_manufactured):
+    def __init__(self, code, name, sale_price, manuf_cost, stock_lvl, est_units_manufactured):
         self.code = code
         self.name = name
         self.sale_price = sale_price
-        self.manufacture_cost = manufacture_cost
-        self.stock_level = stock_level
-        self.estimated_units_manufactured = estimated_units_manufactured
+        self.manuf_cost = manuf_cost
+        self.stock_lvl = stock_lvl
+        self.est_units_manufactured = est_units_manufactured
         self.monthly_stock = []
+        self.unfulfilled_sales = 0
 
     def simulate_monthly_production_and_sales(self):
         for month in range(1, 13):
-            units_manufactured = self.estimated_units_manufactured
+            units_manufactured = self.est_units_manufactured
             units_sold = random.randint(units_manufactured - 10, units_manufactured + 10)
-            net_profit_loss = (units_sold * self.sale_price) - (units_manufactured * self.manufacture_cost)
+            units_sold = min(units_sold, self.stock_lvl)  # Ensure stock doesn't go negative
+            self.stock_lvl -= units_sold
+            if units_sold < 0:
+                self.unfulfilled_sales -= units_sold  # Count unfulfilled sales
+                units_sold = 0  # No units sold if stock is insufficient
+            net_profit_loss = (units_sold * self.sale_price) - (units_manufactured * self.manuf_cost)
             self.monthly_stock.append(MonthlyStock(month, units_sold, units_manufactured, net_profit_loss))
 
     def generate_predicted_stock_statement(self):
