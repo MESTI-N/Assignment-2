@@ -54,15 +54,37 @@ class MonthlyStock:
         print("Net Profit/Loss:", self.net_profit_loss)
         print("-------------------------------")
 
-def main():
-    product_code = int(input("Please enter the Product Code (100 to 1000): "))
-    product_name = input("Please enter the Product Name: ")
-    sale_price = float(input("Please enter the Product Sale Price (greater than zero): "))
-    manufacture_cost = float(input("Please enter the Product Manufacture Cost (greater than zero): "))
-    stock_level = int(input("Please enter the Stock Level (greater than 0): "))
-    estimated_units_manufactured = int(input("Please enter the Estimated Monthly Units Manufactured (greater than or equal to 0): "))
+def get_pos_int_input(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            if 100 <= value <= 1000:
+                return value
+            else:
+                print("Please enter a valid Product Code between 100 and 1000.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
 
-    product = Product(product_code, product_name, sale_price, manufacture_cost, stock_level, estimated_units_manufactured)
+def get_pos_float_input(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+            if value > 0:
+                return value
+            else:
+                print("Please enter a positive real number.")
+        except ValueError:
+            print("Invalid input. Please enter a valid real number.")
+
+def main():
+    code = get_pos_int_input("Please enter the Product Code (100 to 1000): ")
+    name = input("Please enter the Product Name: ")
+    sale_price = get_pos_float_input("Please enter the Product Sale Price (greater than zero): ")
+    manuf_cost = get_pos_float_input("Please enter the Product Manufacture Cost (greater than zero): ")
+    stock_lvl = get_pos_int_input("Please enter the Stock Level (greater than 0): ")
+    est_units_manufactured = get_pos_int_input("Please enter the Estimated Monthly Units Manufactured (greater than or equal to 0): ")
+
+    product = Product(code, name, sale_price, manuf_cost, stock_lvl, est_units_manufactured)
     product.simulate_monthly_production_and_sales()
     product.generate_predicted_stock_statement()
 
