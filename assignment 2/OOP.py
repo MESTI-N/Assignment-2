@@ -31,10 +31,14 @@ class Product:
             net_profit_loss = (units_sold * self.sale_price) - (units_manufactured * self.manuf_cost)
             self.monthly_stock.append(MonthlyStock(month, units_sold, units_manufactured, net_profit_loss))
 
-    def generate_predicted_stock_statement(self):
-        print("Predicted Stock Statement for Product:", self.name)
+def generate_predicted_stock_statement(self):
+        print("\nPredicted Stock Statement for Product:", self.name)
         for month_stock in self.monthly_stock:
             month_stock.display()
+        if self.unfulfilled_sales > 0:
+            print("\nDetails of unfulfilled sales:")
+            print("Units that could not be sold:", self.unfulfilled_sales)
+
 
 class MonthlyStock:
     def __init__(self, month, units_sold, units_manufactured, net_profit_loss):
@@ -44,10 +48,10 @@ class MonthlyStock:
         self.net_profit_loss = net_profit_loss
 
     def display(self):
-        print("Month: "+self.month)
-        print("Units Sold: "+self.units_sold)
-        print("Units Manufactured: "+self.units_manufactured)
-        print("Net Profit/Loss: "+self.net_profit_loss)
+        print("\nMonth:", self.month)
+        print("Units Sold:", self.units_sold)
+        print("Units Manufactured:", self.units_manufactured)
+        print("Net Profit/Loss:", self.net_profit_loss)
         print("-------------------------------")
 
 def main():
